@@ -49,10 +49,10 @@ class Player {
   }
 
   prettyTime(timeInSeconds){
-    var minutes = Math.floor(sec_num / 60) % 60
-    var seconds = sec_num % 60
-    return [minutes,seconds]
-  }
+      var seconds = Number(timeInSeconds % 60/100).toFixed(2).substring(2);
+      var minutes = Math.floor(timeInSeconds / 60);
+      return minutes + ":" + seconds;
+    }
 }
 
 const player = new Player();

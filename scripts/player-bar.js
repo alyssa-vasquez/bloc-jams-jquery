@@ -2,6 +2,9 @@
    $('button#play-pause').on('click', function() {
      helper.playPauseAndUpdate();
      $(this).attr('playState', player.playState);
+
+     const totalTime = player.prettyTime(player.currentlyPlaying.duration);
+      $('#time-control .total-time').text( totalTime );
    });
 
    $('button#next').on('click', function() {
@@ -13,6 +16,8 @@
 
      const nextSong = album.songs[nextSongIndex];
      helper.playPauseAndUpdate(nextSong);
+
+     $('#time-control .total-time').text( player.prettyTime(nextSong.duration) );
    });
 
    $('button#previous').on('click', function() {
@@ -24,6 +29,8 @@
 
      const nextSong = album.songs[nextSongIndex];
      helper.playPauseAndUpdate(nextSong);
+
+     $('#time-control .total-time').text( player.prettyTime(nextSong.duration) );
    });
 
    $('#time-control input').on('input', function (event) {
@@ -39,7 +46,7 @@
      const currentTime = player.getTime();
      const duration = player.getDuration();
      const percent = (currentTime / duration) * 100;
-     $('#time-control .current-time').text( currentTime );
+     $('#time-control .current-time').text( player.prettyTime(currentTime) );
      $('#time-control input').val(percent);
    }, 1000);
  }
